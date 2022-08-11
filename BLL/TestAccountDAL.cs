@@ -13,18 +13,20 @@ namespace BLL
     {
         
 
-        public static bool  insert()
+        public static bool insert()
         {
-            Account account = new Account("0007","1000","User");
+            Account account = new Account("00091","1000","User");
             AccountDAL accountDAL = new AccountDAL();
-            bool check = accountDAL.Insert(account);
+            string query = "insert into tblAccount values(@username, @password, @typeUser)";
+            
+            bool check = accountDAL.Command(account, query);
             return check;
         }
 
         public static DataTable getAll()
         {
             AccountDAL accountDAL = new AccountDAL();
-            return accountDAL.SelectAll();
+            return accountDAL.Select("Select * from tblAccount");
         }
     }
 }
